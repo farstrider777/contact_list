@@ -27,7 +27,7 @@ const Contacts = require("../models").Contacts;
 
     listOneContact (req, res) {
         Contacts.findById(req.params.id)
-        .then(contacts => res.status(200).send(contacts))
+        .then(contacts => res.status(201).send(contacts))
         .catch(error => res.status(400).send(error));
       },
 
@@ -37,7 +37,12 @@ const Contacts = require("../models").Contacts;
           // return Contacts
 
           Contacts.update({
-            name: req.body.name || Contacts.name
+            name: req.body.name || Contacts.name,
+            phone_number: req.body.phone_number || Contacts.phone_number,
+            city: req.body.city || Contacts.city,
+            state: req.body.state || Contacts.state,
+            photo_url: req.body.photo_url || Contacts.photo_url,
+            email: req.body.email || Contacts.email,
           }, {where: {
                       id:req.params.id
                     }
@@ -71,7 +76,7 @@ const Contacts = require("../models").Contacts;
         //     })
         //     .catch((error) => res.status(400).send(error));
         // },
-      // 
+      //
       // deleteContact (req, res) {
       //   Contacts.destroy({
       //
