@@ -35,21 +35,21 @@ const Contacts = require("../models").Contacts;
         .catch(error => res.status(400).send(error));
       },
 
-      // updateContact (req, res) {
-      //     Contacts.update({
-      //
-      //       updatedAt: null,
-      //       }, {
-      //       where: {
-      //         deletedAt: {
-      //           $ne: null
-      //         }
-      //       }
-      //
-      //     })
-      //     .then(contacts => res.status(201).send(contacts))
-      //     .catch(error => res.status(400).send(error));
-      //   },
+      updateContact (req, res) {
+          Contacts.update({
+
+            updatedAt: null,
+            }, {
+            where: {
+              deletedAt: {
+                $ne: null
+              }
+            }
+
+          })
+          .then(contacts => res.status(201).send(contacts))
+          .catch(error => res.status(400).send(error));
+        },
 
 
 
