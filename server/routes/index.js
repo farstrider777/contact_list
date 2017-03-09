@@ -5,6 +5,6 @@ module.exports = (app) => {
   app.post('/contacts', ContactsController.create);
   app.get('/contacts', ContactsController.listContacts);
   app.get('/contacts/:id', ContactsController.listOneContact);
-  app.put('/contacts', ContactsController.updateContact);
-  app.delete('/contacts', ContactsController.deleteContact);
+  app.put('/contacts/:id', ContactsController.updateContact);
+//  app.delete('/contacts', ContactsController.deleteContact);
 };
