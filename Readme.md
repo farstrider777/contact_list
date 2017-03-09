@@ -58,17 +58,16 @@ status code 201 and - every contact listed in this form:
 
   **Title**
 ----
-  <_Additional information about your API call. Try to use verbs that match both request type (fetching vs modifying) and plurality (one vs multiple)._>
+  Welcome to Super Contacts!!! The contact manager of the future.
+  We'll start by creating a contact.
 
 * **URL**
 
-  <_The URL Structure (path only, no root url)_>
+  Here you are going to use localhost:8000/contacts nothing else is required in the URL for this route.
 
 * **Method:**
 
-  <_The request type_>
-
-  `GET` | `POST` | `DELETE` | `PUT`
+  This will be a `GET` request
 
 *  **URL Params**
 
