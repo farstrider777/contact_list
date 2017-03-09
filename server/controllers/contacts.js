@@ -49,7 +49,7 @@ const Contacts = require("../models").Contacts;
             })
           .then(contacts => res.status(201).send(contacts))
           .catch(error => res.status(400).send(error));
-        }
+        },
 
 
 
@@ -77,13 +77,22 @@ const Contacts = require("../models").Contacts;
         //     .catch((error) => res.status(400).send(error));
         // },
       //
-      // deleteContact (req, res) {
-      //   Contacts.destroy({
-      //
-      //   })
-      //   .then(contacts => res.status(201).send(contacts))
-      //   .catch(error => res.status(400).send(error));
-      // }
+      deleteContact (req, res) {
+        Contacts.destroy({
+        //  name: req.body.name || Contacts.name
+         where: {
+                    id:req.params.id
+                }
+          })
+        .then(contacts => res.status(201).send(contacts))
+        .catch(error => res.status(400).send(error));
+      }
+
+//       Model.destroy({
+//     where: {
+//         // criteria
+//     }
+// })
 
 //       destroy(req, res) {
 //   return Todo
