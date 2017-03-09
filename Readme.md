@@ -8,54 +8,6 @@ Skills practiced
 
 ###API Documentation###
 
-1. No Authentication needed.
-2. POST - Creating a contact, Params -
-  * name: First and last (this field is required)
-  * phone_number: Include area code (this field is required)
-  * city:
-  * state:
-  * photo_url: Include entire url (http://etc)
-  * email: A full email address
-3. Response - If the contact was created successfully you should receive status code 201 and -
-  * {
-  * "id": 4,
-  * "name": "BIll",
-  * "phone_number": "567-787-7000",
-  * "city": "Athens",
-  * "state": "GA",
-  * "photo_url": "http://thisphotourl",
-  * "email": "billthegreat@fuzzy.com",
-  * "updatedAt": "2017-03-09T11:58:35.879Z",
-  * "createdAt": "2017-03-09T11:58:35.879Z"
-  * }
-4. GET - Getting the entire contacts list - no Params - you should recieve
-status code 201 and - every contact listed in this form:
-  * {
-  * "id": 4,
-  * "name": "BIll",
-  * "phone_number": "567-787-7000",
-  * "city": "Athens",
-  * "state": "GA",
-  * "photo_url": "http://thisphotourl",
-  * "email": "billthegreat@fuzzy.com",
-  * "updatedAt": "2017-03-09T11:58:35.879Z",
-  * "createdAt": "2017-03-09T11:58:35.879Z"
-  * }
-5. GET individual contact - Get one contact from the list - Params
-  * id : id of contact
-6. Response - You should receive response 201 and -
-  * {
-  * "id": 4,
-  * "name": "BIll",
-  * "phone_number": "567-787-7000",
-  * "city": "Athens",
-  * "state": "GA",
-  * "photo_url": "http://thisphotourl",
-  * "email": "billthegreat@fuzzy.com",
-  * "updatedAt": "2017-03-09T11:58:35.879Z",
-  * "createdAt": "2017-03-09T11:58:35.879Z"
-  * }
-
   **Title**
 ----
   Welcome to Super Contacts!!! The contact manager of the future.
@@ -63,51 +15,93 @@ status code 201 and - every contact listed in this form:
 
 * **URL**
 
-  Here you are going to use localhost:8000/contacts nothing else is required in the URL for this route.
+  Here you are going to use `localhost:8000/contacts` nothing else is required in the URL for this route. You will need to put your contact's information in the request body.
 
 * **Method:**
 
   This will be a `GET` request
 
-*  **URL Params**
-
-   <_If URL params exist, specify them in accordance with name mentioned in URL section. Separate into optional and required. Document data constraints._>
-
-   **Required:**
-
-   `id=[integer]`
-
-   **Optional:**
-
-   `photo_id=[alphanumeric]`
-
 * **Data Params**
 
-  <_If making a post request, what should the body payload look like? URL Params rules apply here too._>
+  **Required:**
+
+  `name=[string]`
+  `phone_number=[string]`
+
+  **Optional:**
+
+  `city=[string]`
+  `state=[string]`
+  `photo_url=[string]`
+  ` email=[string]`
 
 * **Success Response:**
 
-  <_What should the status code be on success and is there any returned data? This is useful when people need to to know what their callbacks should expect!_>
+  This route will return the contact you just posted with all the information that was saved.
 
-  * **Code:** 200 <br />
-    **Content:** `{ id : 12 }`
+  * **Code:** 201 <br/>
+    **Content:**
+  `[{
+    "id": 1,
+    "name": "Josh",
+    "phone_number": "567-787-7778",
+    "city": Tallahassee,
+    "state": Florida,
+    "photo_url": null,
+    "email": fun@yahoo.com,
+    "createdAt": "2017-03-08T21:21:53.898Z",
+    "updatedAt": "2017-03-08T21:21:53.898Z"
+  }]`
+
 
 * **Error Response:**
 
-  <_Most endpoints will have many ways they can fail. From unauthorized access, to wrongful parameters etc. All of those should be liste d here. It might seem repetitive, but it helps prevent assumptions from being made where they should be._>
+  If you get an error response the most likely problem is that you didn't include infomation for the two mandatory fields which are name and phone_number.
 
-  * **Code:** 401 UNAUTHORIZED <br />
-    **Content:** `{ error : "Log in" }`
+  * **Code:** 400 BAD REQUEST <br/>
 
-  OR
+  **Title**
+  ----
+  The next route we are going to use is a get request to look at all the contacts in Super Contacts. This is useful to make sure that the first contact you entered has all the information and also later if you want to export your whole contact list.
 
-  * **Code:** 422 UNPROCESSABLE ENTRY <br />
-    **Content:** `{ error : "Email Invalid" }`
+  * **URL**
 
-* **Sample Call:**
+    Again we will be using `localhost:8000/contacts` we don't need any other information in the URL or any information in the request body.
 
-  <_Just a sample call to your endpoint in a runnable format ($.ajax call or a curl request) - this makes life easier and more predictable._>
+  * **Method:**
 
-* **Notes:**
+    This will be a `GET` request    
 
-  <_This is where all uncertainties, commentary, discussion etc. can go. I recommend timestamping and identifying oneself when leaving comments here._>
+  * **Success Response:**
+
+    You will be getting your entire contact list
+
+    * **Code:** 201 <br/>
+      **Content:** `  [{
+    "id": 1,
+    "name": "Josh",
+    "phone_number": "567-787-7778",
+    "city": null,
+    "state": null,
+    "photo_url": null,
+    "email": null,
+    "createdAt": "2017-03-08T21:21:53.898Z",
+    "updatedAt": "2017-03-08T21:21:53.898Z"
+  },
+  {
+    "id": 2,
+    "name": "Kurt",
+    "phone_number": "567-787-6969",
+    "city": "Atlanta",
+    "state": "GA",
+    "photo_url": "thisphotourl",
+    "email": "kurtthegreat@fuzzy.com",
+    "createdAt": "2017-03-08T21:28:12.521Z",
+    "updatedAt": "2017-03-08T21:28:12.521Z"
+  }]`
+
+  * **Error Response:**
+
+    If you get an error response from this route most likely you tried put extra info in there, try it again with just the base url.
+
+    * **Code:** 400 BAD REQUEST <br/>
