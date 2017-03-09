@@ -26,14 +26,11 @@ const Contacts = require("../models").Contacts;
       },
 
     listOneContact (req, res) {
-        Contacts.findAll({
-          where: {
-            id: req.params.id
-          }
-        })
+        Contacts.findById(req.params.id)
         .then(contacts => res.status(201).send(contacts))
         .catch(error => res.status(400).send(error));
       },
+
 
       updateContact (req, res) {
           Contacts.update({
@@ -51,6 +48,14 @@ const Contacts = require("../models").Contacts;
           .catch(error => res.status(400).send(error));
         },
 
+      deleteContact (req, res) {
+        Contacts.delete({
 
+
+
+        })
+        .then(contacts => res.status(201).send(contacts))
+        .catch(error => res.status(400).send(error));
+      }
 
   };
