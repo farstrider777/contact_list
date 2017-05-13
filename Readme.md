@@ -24,11 +24,11 @@ Skills practiced
 
 * **URL**
 
-  Here you are going to use `localhost:8000/contacts` nothing else is required in the URL for this route. You will need to put your contact's information in the request body.
+  Here you are going to use `http://localhost:8000/contacts` nothing else is required in the URL for this route. You will need to put your contact's information in the request body.
 
 * **Method:**
 
-  This will be a `GET` request
+  This will be a `POST` request
 
 * **Data Params**
 
